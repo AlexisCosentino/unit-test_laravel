@@ -9,10 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BROADCAST_DRIVER: log
-      CACHE_DRIVER: redis
-      QUEUE_CONNECTION: redis
-      SESSION_DRIVER: redis
       DB_CONNECTION: pgsql
       DB_HOST: localhost
       DB_PASSWORD: userpassword
