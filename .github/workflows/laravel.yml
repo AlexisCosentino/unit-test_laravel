@@ -29,11 +29,6 @@ jobs:
         ports:
           - 5432/tcp
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
-      redis:
-        image: redis
-        ports:
-          - 6379/tcp
-        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: shivammathur/setup-php@v2
@@ -53,7 +48,7 @@ jobs:
       env:
         DB_PORT: ${{ job.services.postgres.ports[5432] }}
         REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
+    - name: Execute tests
       env:
         DB_PORT: ${{ job.services.postgres.ports[5432] }}
       run: php artisan test
